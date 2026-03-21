@@ -39,3 +39,9 @@ data "oci_core_images" "windows_supported_image" {
   sort_order               = "DESC"
   state                    = "AVAILABLE"
 }
+
+/************************************************************
+Region
+************************************************************/
+data "oci_identity_regions" "regions" {
+}
