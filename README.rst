@@ -111,15 +111,58 @@ OCI Compute のカスタムメトリクスを Prometheus Node Exporter で取得
 
   terraform apply --auto-approve
 
+6. 管理エージェント構築
+---------------------------------------------------------------------
+.. note::
+
+  * `こちら <>`_ を参考にインスタンスに管理エージェントを構築
+
+
 後片付け - ローカル -
 =====================================================================
-1. 環境削除
+1. 管理エージェント手動削除
+---------------------------------------------------------------------
+.. note::
+
+  * インスタンス内に管理エージェントをインストールすると、管理エージェントサービスに自動登録されます
+  * 自動登録されたリソースは Terraform 管理外のため手動削除します
+
+.. code-block:: bash
+
+  COMPARTMENT_ID=$(oci iam compartment list \
+  --name oci-compute-custom-metrics-using-prometheus-node-exporter \
+  --query "data[0].\"id\"" \
+  --raw-output \
+  --profile ADMIN \
+  --auth security_token)
+
+.. code-block:: bash
+
+  oci management-agent agent list \
+  --compartment-id "$COMPARTMENT_ID" \
+  --query "data[].id" \
+  --profile ADMIN \
+  --auth security_token
+
+.. code-block:: bash
+
+  oci management-agent agent delete \
+  --agent-id "AgentのOCID" \
+  --force \
+  --profile ADMIN \
+  --auth security_token
+
+.. note::
+
+  * AgentのOCID は list コマンドで取得したOCIDに変更してください
+
+2. 環境削除
 ---------------------------------------------------------------------
 .. code-block:: bash
 
   terraform destroy --auto-approve
 
-2. *tfstate* 用S3バケット削除
+3. *tfstate* 用S3バケット削除
 ---------------------------------------------------------------------
 .. code-block:: bash
 
@@ -127,7 +170,6 @@ OCI Compute のカスタムメトリクスを Prometheus Node Exporter で取得
   --bucket-name terraform-working \
   --force --empty \
   --profile ADMIN --auth security_token
-
 
 番外編
 =====================================================================
