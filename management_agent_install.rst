@@ -68,6 +68,17 @@ Windows
   #Service.plugin.opsiHost.download=true
   #Service.plugin.jm.download=true
 
+.. note:: 
+
+  * `参考 <https://docs.oracle.com/ja-jp/iaas/management-agents/doc/management-agents-administration-tasks.html#OCIAG-GUID-3008AAB9-B871-47B6-BC05-3A6FE5BDD470>`_
+  * 修正後、対象インスタンスに持ち込み
+
+3. ``JDK 8`` インストール
+---------------------------------------------------------------------
+
+.. note::
+  
+  * `前提条件 <https://docs.oracle.com/ja-jp/iaas/management-agents/doc/perform-prerequisites-deploying-management-agents.html#OCIAG-GUID-BC5862F0-3E68-4096-B18E-C4462BC76271>`_ に ``JDK`` のインストールが必要のためインストール
 
 
 
