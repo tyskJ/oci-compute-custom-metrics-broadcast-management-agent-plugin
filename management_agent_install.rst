@@ -80,6 +80,20 @@ Windows
   
   * `前提条件 <https://docs.oracle.com/ja-jp/iaas/management-agents/doc/perform-prerequisites-deploying-management-agents.html#OCIAG-GUID-BC5862F0-3E68-4096-B18E-C4462BC76271>`_ に ``JDK`` のインストールが必要のためインストール
 
+.. warning::
+
+  * ``JDK 8`` のみサポート
+  * それ以外だとエラー
+
+  .. code-block:: terminal
+
+    C:\Users\opc\Desktop\oracle.mgmt_agent.260128.1501.Windows-x86_64\mgmt_agent>installer.bat c:\Users\opc\Desktop\windows-key.rsp
+    Checking pre-requisites
+
+        Checking if previous agent service exists
+        Checking if C:\Oracle\mgmt_agent\agent_inst directory exists
+        Checking Java version
+    "Agent only supports 64 bit and 32 bit JDK 8 (with a minimum upgrade version JDK 8u281). Please set your preferred path in JAVA_HOME"
 
 
 参考資料
