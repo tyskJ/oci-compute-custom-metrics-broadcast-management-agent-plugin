@@ -3,12 +3,12 @@ Windows
 1. インストーラー取得
 ---------------------------------------------------------------------
 
-#. OCI コンソール左上のハンバーガーマークをクリックし、``Observability & Management`` → ``Agents`` をクリック
+1. OCI コンソール左上のハンバーガーマークをクリックし、``Observability & Management`` → ``Agents`` をクリック
 
 .. image:: ./doc/image/pic1.png
   :scale: 100%
 
-#. ``Download and Keys`` から、``Agent for WINDOWS (X86_64)``` をクリックしてローカルPCにダウンロード
+2. ``Download and Keys`` から、``Agent for WINDOWS (X86_64)``` をクリックしてローカルPCにダウンロード
 
 参考資料
 =====================================================================
