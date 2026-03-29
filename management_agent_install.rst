@@ -3,12 +3,14 @@ Windows
 1. インストーラー取得
 ---------------------------------------------------------------------
 
-1. OCI コンソール左上のハンバーガーマークをクリックし、``Observability & Management`` → ``Agents`` をクリック
+1-1. OCI コンソール左上のハンバーガーマークをクリックし、``Observability & Management`` → ``Agents`` をクリック
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./doc/image/pic1.png
   :scale: 100%
 
-2. ``Download and Keys`` から、``Agent for WINDOWS (X86_64)``` をクリックしてローカルPCにダウンロード
+1-2. ``Download and Keys`` から、``Agent for WINDOWS (X86_64)``` をクリックしてローカルPCにダウンロード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./doc/image/pic2.png
   :scale: 100%
@@ -20,22 +22,26 @@ Windows
 2. インストールキー作成
 ---------------------------------------------------------------------
 
-1. 先程の同じ画面にて ``Create key`` をクリック
+2-1. 先程の同じ画面にて ``Create key`` をクリック
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./doc/image/pic3.png
   :scale: 100%
 
-2. 各種情報を入力し ``Create`` をクリック
+2-2. 各種情報を入力し ``Create`` をクリック
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./doc/image/pic4.png
   :scale: 100%
 
-3. 作成したインストールキーの情報が含まれる ``レスポンス・ファイル`` をダウンロード
+2-3. 作成したインストールキーの情報が含まれる ``レスポンス・ファイル`` をダウンロード
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./doc/image/pic5.png
   :scale: 100%
 
-4. ``キー名.rsp`` ファイルがローカルPCにダウンロードされるため、デフォルトから今回の構成に合わせて修正
+2-4. ``キー名.rsp`` ファイルがローカルPCにダウンロードされるため、デフォルトから今回の構成に合わせて修正
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **windows-key.rsp**
 
@@ -95,7 +101,7 @@ Windows
         Checking Java version
     "Agent only supports 64 bit and 32 bit JDK 8 (with a minimum upgrade version JDK 8u281). Please set your preferred path in JAVA_HOME"
 
-1. `こちら <https://www.oracle.com/jp/java/technologies/javase/javase8u211-later-archive-downloads.html#:~:text=Java%20SE%20Development%20Kit%208u281>`_ から ``jdk-8u281-windows-x64.exe`` をダウンロード
+3-1. `こちら <https://www.oracle.com/jp/java/technologies/javase/javase8u211-later-archive-downloads.html#:~:text=Java%20SE%20Development%20Kit%208u281>`_ から ``jdk-8u281-windows-x64.exe`` をダウンロード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. warning::
@@ -103,11 +109,59 @@ Windows
   * 事前に Oracle アカウントが必要
   * 商用利用の場合はライセンスが必要になるので注意
 
-2. ``exe`` ファイルを実行
+3-2. ``exe`` ファイルを実行
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
 
   * 設定はデフォルトでインストール
+
+3-3. 環境変数追加
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* 管理者権限で ``Powershell`` を起動し以下コマンド実行でシステムプロパティを起動
+* 新規で ``変数名：JAVA_HOME / 変数値：C:\Program Files\Java\jdk1.8.0_281`` を追加、環境変数 ``Path`` に ``%JAVA_HOME%\bin`` を追加
+
+.. code-block:: Powershell
+
+  SystemPropertiesAdvanced
+
+4. ``Management Agent`` インストール
+---------------------------------------------------------------------
+* 管理者権限でターミナルを起動
+* インストーラーを解凍し、``installer.bat`` があるディレクトリに移動
+* レスポンス・ファイルをフルパスで指定し、実行
+
+.. code-block:: bash
+
+  installer.bat <full-path-to-rsp-file>
+
+.. warning::
+
+  * 試しにサポートされていない ``Windows Server 2025`` で実行するとエラーになりました
+
+  .. code-block:: none
+
+    'wmic' is not recognized as an internal or external command, operable program or batch file. is not supported by Management Agent for all plugins. Please check the documentation for supported versions. Java Management Service users should check the documentation and if the plugin is supported, then set "OVERRIDE_VERSION_CHECK=true" in your environment variables before attempting the installation.
+
+5. インストール後確認
+---------------------------------------------------------------------
+
+* サービスページにて登録されています
+
+.. image:: ./doc/image/pic6.png
+  :scale: 100%
+
+* Windows サービスとしても登録されています
+
+.. image:: ./doc/image/pic7.png
+  :scale: 100%
+
+.. warning::
+
+  * インスタンスコンソールからは起動停止の制御不可
+
+  .. image:: ./doc/image/pic8.png
+    :scale: 100%
 
 参考資料
 =====================================================================
