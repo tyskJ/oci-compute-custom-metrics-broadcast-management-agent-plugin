@@ -168,6 +168,3 @@ Windows
 リファレンス
 ---------------------------------------------------------------------
 * `管理エージェントのインストール - Oracle Cloud Infrastructureドキュメント <https://docs.oracle.com/ja-jp/iaas/management-agents/doc/install-management-agent-chapter.html>`_
-* ` <>`_
-* ` <>`_
-* ` <>`_
